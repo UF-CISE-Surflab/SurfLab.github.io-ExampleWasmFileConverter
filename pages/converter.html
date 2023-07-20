@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/standard.css">
+
+    <!-- For saving file: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript -->
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" 
+            integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" 
+            crossorigin = "anonymous" 
+            referrerpolicy = "no-referrer">
+    </script>
+    <!-- For accessing wasm file -->
+    <script type="text/javascript" src="../scripts/converter.js"></script>
+    <!-- Handling of use -->
+    <script type="text/javascript" src="../scripts/handleConverter.js" defer></script>
+    <title>File Converter</title>
+</head>
+<body>
+    <header>
+        <section>
+            <h1>File Converter</h1>
+            <h2>Convert .obj files to .xyz files.</h2>
+        </section>
+    </header>
+
+    <main>
+        <section>
+            <h2>Input file name:</h2>
+            <input type="file" name="in-file" id="in-file" accept=".obj,.txt">
+            <button type="submit" id="convert-button">Convert</button>
+        </section>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+/* https://www.freecodecamp.org/news/how-to-center-anything-with-css-align-a-div-text-and-more/  for vertical centering */
+
+:root {
+    --header-height: 200px;
+    --footer-height: 50px;
+    --main-padding: 10px;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: whitesmoke;
+
+    display:grid;
+    grid-template-rows: max-content;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background-color:aquamarine;
+    text-align: center;
+    height: var(--header-height);
+    margin:0;
+    padding:0;
+}
+
+footer {
+    background-color:gray;
+    height:var(--footer-height);
+}
+
+header > section {
+    margin:auto;
+}
+
+/*https://stackoverflow.com/questions/44153866/how-can-i-get-the-height-of-an-element-using-css-only*/
+/*2nd answer*/
+main {
+    width: 80%;
+    margin: 0px auto;
+    padding: var(--main-padding) 10px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    min-height: calc(100vh - var(--header-height) - var(--footer-height) - 2 * var(--main-padding));
+    background-color: white;
+}
+
+main > section {
+    margin:auto;
+    text-align: center;
+}
+
+main > section > * {
+    display: block;
+    margin: 10px auto;
+}
