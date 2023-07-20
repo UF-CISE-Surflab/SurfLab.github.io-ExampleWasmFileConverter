@@ -1,5 +1,7 @@
 # C++ and WebAssembly Demonstration Website
 
+Please go to https://gatorsethbarber.github.io/GatorSethBarber.github.io-ExampleWasmFileConverter/docs/converter to see the actual site.
+
 ## Use of Web Application
 
 The user browses and selects a file with type `.txt` or type `.obj`. After pressing the convert button, a shift of all the characters by one position is written to the file `output.txt` in Downloads. A number in parentheses may be added by the user's OS to distinguish between various versions.
