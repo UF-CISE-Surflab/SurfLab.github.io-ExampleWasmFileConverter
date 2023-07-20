@@ -1,6 +1,6 @@
 # C++ and WebAssembly Demonstration Website
 
-Please go to https://gatorsethbarber.github.io/GatorSethBarber.github.io-ExampleWasmFileConverter/docs/converter to see the actual site.
+Please click [here](https://gatorsethbarber.github.io/GatorSethBarber.github.io-ExampleWasmFileConverter/docs/converter) to go to the actual application.
 
 ## Use of Web Application
 
@@ -86,4 +86,5 @@ The following is a list of URLs/sites used in the project.
 * https://github.com/GatorSethBarber/HotelogyFinal/blob/main/4500/scripts/dataHandler.js
 * https://github.com/GatorSethBarber/COP3530Project3/blob/a9aa02985a29c6f5fde027e427496f2067e0bcf1/webpages/questionnaire.html
 * For saving file: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
-* https://stackoverflow.com/questions/33674973/makefile-error-make-e-2-the-system-cannot-find-the-file-specified for problem that I encountered
+* https://stackoverflow.com/questions/33674973/makefile-error-make-e-2-the-system-cannot-find-the-file-specified describes a problem I encountered with running the make program
+* https://www.codecademy.com/resources/docs/markdown/links for links in Markdown

@@ -54,7 +54,7 @@ function doConversion() {
             let  blob = new Blob([newString], {type: "text/plain;charset=utf-8",});
 
             // Create and save the file using the FileWriter library
-            saveAs(blob, "output.txt");
+            saveAs(blob, "output.obj");
         },
         false,
     );
