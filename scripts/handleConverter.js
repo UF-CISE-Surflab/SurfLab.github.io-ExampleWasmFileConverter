@@ -7,6 +7,7 @@
 // New File System Access API: https://developer.chrome.com/articles/file-system-access/ (not used)
 
 let converter;
+let outputFileType = ".obj";
 
 const getLitType = (fileName) => {
     const rightDot = fileName.lastIndexOf(".");
@@ -30,14 +31,16 @@ function doConversion() {
         return;
     }
 
+    // Enforce the literal type to be .obj
     const litType = getLitType(file.name);
-    if (litType !== ".obj" && litType !== ".txt") {
+    if (litType !== ".obj") {
         alert(`Unsupported file type: ${litType}`);
     }
     
     const fileReader = new FileReader();
 
     // from readAsText source
+    // This handles reading in the text from the file, processing it, and writing new file.
     fileReader.addEventListener(
         "load",
         () => {
@@ -45,8 +48,6 @@ function doConversion() {
             const result = fileReader.result;
 
             // processing
-
-            // TODO: error handling
             let newString = converter.stringConvert(result);
 
             // Copied from https://github.com/GatorSethBarber/HotelogyFinal/blob/main/4500/scripts/dataHandler.js
@@ -54,7 +55,10 @@ function doConversion() {
             let  blob = new Blob([newString], {type: "text/plain;charset=utf-8",});
 
             // Create and save the file using the FileWriter library
-            saveAs(blob, "output.obj");
+            saveAs(blob, "output" + outputFileType);
+
+            // State task is done and report errors
+            alert("Task done.\nError report:\n" + converter.flagReport());
         },
         false,
     );

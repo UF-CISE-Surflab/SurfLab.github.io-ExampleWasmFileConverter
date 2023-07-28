@@ -40,12 +40,15 @@ string Vertex::getOutput() {
 }
 
 //-------------------  Converter Class -------------------//
-Converter::Converter() : malformed_line(false), unknown_error(false) {}
+Converter::Converter() : malformed_line(false), unknown_error(false) {
+    lineWithError = "";
+}
 
 string Converter::stringConvert(string textInput) {
     // Reset flags
     malformed_line = false;
     unknown_error = false;
+    lineWithError = "";
 
     istringstream input(textInput);
     ostringstream output;
@@ -57,7 +60,8 @@ string Converter::stringConvert(string textInput) {
         getline(input, line);
         
         // If a blank line, write with no adjustments
-        if (line.size() < 1) {
+        // NOTE: Size 1 used to make it work with JavaScript
+        if (line.size() < 2) {
             output << line << endl;
             continue;
         }
@@ -69,7 +73,7 @@ string Converter::stringConvert(string textInput) {
         if (spacePos == -1) {
             cout << "Malformed line" << endl;
             malformed_line = true;
-            break;
+            continue;
         }
 
         // Otherwise, get code specifiying the type of specification
@@ -102,5 +106,8 @@ string Converter::stringConvert(string textInput) {
 Get the flags that are output from processing. Can be displayed as an alert
 */
 string Converter::flagReport() {
-    return "malformed_line: " + to_string(malformed_line) + "; unknown_error: " + to_string(unknown_error) + ";";
+    string errorString = "malformed_line: " + to_string(malformed_line) + "; unknown_error: " + to_string(unknown_error);
+    if (lineWithError != "")
+        errorString += "; lineWithError = "  + lineWithError;
+    return errorString;
 }

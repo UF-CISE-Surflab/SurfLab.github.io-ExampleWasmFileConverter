@@ -4,11 +4,11 @@ Please click [here](https://gatorsethbarber.github.io/GatorSethBarber.github.io-
 
 ## Use of Web Application
 
-The user browses and selects a file with type `.txt` or type `.obj`. After pressing the convert button, a shift of all the characters by one position is written to the file `output.txt` in Downloads. A number in parentheses may be added by the user's OS to distinguish between various versions.
+The user browses and selects a file with type type `.obj`. After pressing the convert button, a shift of all the characters by one position is written to the file `output.obj` in Downloads. A number in parentheses may be added by the user's OS to distinguish between various versions.
 
 ### Errors
 The following errors raise alerts:
-* If the user selects any file that is not a `.txt` or `.obj` file, an error gets raised.
+* If the user selects any file that is not a `.obj` file, an error gets raised.
 * If the user does not select any file and presses the Convert button (after the wasm file has been loaded), an error gets raised.
 
 ## Building Process 

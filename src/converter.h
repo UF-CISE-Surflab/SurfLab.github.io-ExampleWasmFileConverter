@@ -17,6 +17,7 @@ struct Vertex {
 class Converter {
     bool malformed_line;
     bool unknown_error;
+    string lineWithError;
 public:
     Converter();
     string stringConvert(string text);
