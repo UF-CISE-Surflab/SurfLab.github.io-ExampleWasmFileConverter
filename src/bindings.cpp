@@ -11,5 +11,6 @@ EMSCRIPTEN_BINDINGS(Converter) {
     class_<Converter>("Converter")
         .constructor<>()
         .function("stringConvert", &Converter::stringConvert)
+        .function("flagReport", &Converter::flagReport)
         ;
 }

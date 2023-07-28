@@ -88,3 +88,5 @@ The following is a list of URLs/sites used in the project.
 * For saving file: https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
 * https://stackoverflow.com/questions/33674973/makefile-error-make-e-2-the-system-cannot-find-the-file-specified describes a problem I encountered with running the make program
 * https://www.codecademy.com/resources/docs/markdown/links for links in Markdown
+* For the cube.obj file: By garykac at https://github.com/garykac/3d-cubes/blob/master/cube.obj
+* cplusplus.com was used as a general reference
