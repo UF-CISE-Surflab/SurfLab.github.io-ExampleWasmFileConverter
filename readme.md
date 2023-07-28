@@ -90,3 +90,4 @@ The following is a list of URLs/sites used in the project.
 * https://www.codecademy.com/resources/docs/markdown/links for links in Markdown
 * For the cube.obj file: By garykac at https://github.com/garykac/3d-cubes/blob/master/cube.obj
 * cplusplus.com was used as a general reference
+* For `stod`: https://www.programiz.com/cpp-programming/string-float-conversion
