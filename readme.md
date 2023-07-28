@@ -96,7 +96,7 @@ The commands for getting emscripten on your computer are available at https://em
 5. You may want to run `git pull` here to update emscripten. However, this is not necessary.
 6. Run `./emsdk install latest` or `emsdk install latest`
 
-This completes what needs to be downloaded to run emscripten. Note that the final step above will take some time to complete.
+This completes what needs to be downloaded to run emscripten. Note that the final step above will take some time to complete and that emsdk is over a gigabyte in size.
 
 #### Running emscripten
 In PowerShell, you should be able to run the following commands, either by typing them out or running `mingw32-make web`:
