@@ -15,7 +15,7 @@ The following errors raise alerts:
 
 *Note: To see more detailed process, see section Detailed Build Explanation*
 
-The applications is built in Windows.
+The application is built in Windows.
 
 The program is built using the included Makefile. The Makefile was tested using mingw32-make on Windows 10 in Powershell. The technical version of mingw32-make used was GNU Make 4.2.1. The files needed for the web application have already been built and are included. The commands in the makefile follow. They are accompanied by the commands used to run them while testing.
 
@@ -69,7 +69,7 @@ The following details the structure of the project.
 
 ## Detailed Build Explanation
 
-The process is built in Windows, with the Makefile being built using mingw32-make. The details for the various parts are below. If you do not have mingw32-make, then you can run the commands in the command line.
+The instructions below assume that the project is built in Windows using Powershell, with the Makefile being built using mingw32-make. The details for the various options in the Makefile are below. If you do not have mingw32-make, then you can run the commands in the command line. Any adaptations needed to run the commands in the regular command line rather than Powershell are noted.
 
 ### Setup and Details for Plain .exe Build
 
@@ -79,36 +79,36 @@ g++ ./src/converter.cpp ./src/main.cpp -o temp.exe      // build using g++
 ./temp.exe                                              // Run temp.exe
 ```
 
-If you are using the plain command line, run `temp.exe` rather than `./temp.exe`. This executable will perform the transformation on `cube.obj` and print the result of the transformation to the standard output stream. Note that the commands should be run from the main directory.
+If you are using the ordinary command line rather than Powershell, run `temp.exe` rather than `./temp.exe`. This executable will perform the transformation on `cube.obj` and print the result of the transformation to the standard output stream. Note that the commands should be run from the main directory.
 
 ### Setup and Details for Web Build
 
-The setup for building for the web is more complicated. Follow the various steps below.
+The setup for building for the web is more complicated than that for building temp.exe. Follow the various steps below.
 
 #### Getting emscripten
 
-The commands for getting emscripten on your computer are available at https://emscripten.org/docs/getting_started/downloads.html and are repeated here, with modifications.
+The commands for installing Emscripten on a computer are available on [the official website](https://emscripten.org/docs/getting_started/downloads.html). They are repeated here, with modifications.
 
-1. It is recommended that you create a new directory C:\emcc. While this is not necessary, it will provide an insulated place to perform the following steps and a convenient location for following use, though you may also prefer to not create a file and just use C:\.
-2. Go to this directory in the command prompt that has both git and python avaialable.
-3. In git bash, run `git clone https://github.com/emscripten-core/emsdk.git`. This will clone the repository for emscripten onto your computer.
+1. It is recommended that you create a new directory C:\emcc. While this is not necessary, it will provide an insulated place to perform the following steps and a convenient location for following use. However it may be preferable to not create a the emcc folder and just perform the following steps in C:\.
+2. Go to the directory you chose/created in a command prompt that has both `git` and `python` as properly configured, avaialable commands for the logical programs.
+3. In the prompt, run `git clone https://github.com/emscripten-core/emsdk.git`. This will clone the repository for emscripten onto your computer.
 4. Run `cd emsdk/` to enter the correct repository.
-5. You may want to run `git pull` here to update emscripten. However, this is not necessary.
-6. Run `./emsdk install latest` or `emsdk install latest`
+5. You may want to run `git pull` here to update emscripten. However, this is not necessary as it was just downloaded.
+6. Run `./emsdk install latest` or `emsdk install latest`, depending on which command works in the prompt you are using.
 
-This completes what needs to be downloaded to run emscripten. Note that the final step above will take some time to complete and that emsdk is over a gigabyte in size.
+This completes what the needed installation of emscripten. Note that the final step above will take some time to complete and that emsdk is over a gigabyte in size.
 
 #### Running emscripten
-In PowerShell, you should be able to run the following commands, either by typing them out or running `mingw32-make web`:
+In PowerShell or another command prompt, you should be able to run the following commands, either by typing them out or running `mingw32-make web`:
 ```
 $(emsdk_filepath)/emsdk activate latest
 emcc -lembind src/converter.cpp src/bindings.cpp -o scripts/converter.js -I$(emsdk_filepath) -s EXPORT_NAME=createModule -s MODULARIZE=1
 ```
-If you are typing them out, replace `$(emsdk_filepath)` with the full file path to the emsdk folder that was created when running the `git clone` operation. If you ran the `git clone` inside of C:\emcc, then the path will be C:/emcc/emsdk/. If you are using the Makefile, change `emsdk_filepath` variable to be the appropriate filepath.
+If you are typing the commands out, replace `$(emsdk_filepath)` with the full file path to the emsdk folder that was created when running the `git clone` operation. If you ran the `git clone` inside of C:\emcc, then the path will be C:/emcc/emsdk/ and will already be properly configured in the Makefile. Otherwise, if you are using the Makefile, change `emsdk_filepath` variable to be the appropriate filepath.
 
-The first command makes the emcc command available, while the second command uses emcc to build the necessary C++ files to the output. You may notice that the output is marked as a JavaScript file rather than a WebAssembly file. This is correct, and makes the process output both a WebAssembly file (scripts/converter.wasm) containing bytecode and a JavaScript file (scripts/converter.js) that allows access to the WebAssembly file. The other flags are needed to make the output work correctly with the current web application.
+The first command makes the emcc command available, while the second command uses emcc to build the necessary C++ files to the output. You may notice that the output is marked as a JavaScript file rather than a WebAssembly file. This is correct, and makes the process output both a WebAssembly binary file (scripts/converter.wasm) containing bytecode and a JavaScript file (scripts/converter.js) that allows access to the WebAssembly file. The other flags are needed to make the output work correctly with the current web application.
 
-*Note: In the Makefile, you may notice that these commands are on one line and joined by an ampersand (&). This is because running the commands runs them in different new processes (shells). However, it is required that they run in the same process, hence the & in the Makefile*
+*Note: In the Makefile, you may notice that these commands are on one line and joined by an ampersand (&). This is because running the commands runs them in different new processes (shells). However, it is required that they run in the same process, hence the & in the Makefile.*
 
 ### Setup and Details for Clean
 The following commands is used to remove the .exe file created by the plain option:
@@ -118,12 +118,12 @@ del temp.exe
 
 ## Modifying the Web Application
 
-JavaScript and WebAssembly have severe limitations on what can and cannot be performed due to the high risk of exploits from the internet. WebAssembly, in fact, can only access files that it is specified as having access to at compile time. Thus, special code and methodology is needed to access the file system of the computer. This is handled already by having JavaScript read the file in from the computer, take the contents of the file as a string and set it to the WebAssembly application, get back the new date from the WebAssembly application as a string, and (using freely available 3rd-party code) write it to the computer as a file placed into downloads. While this may seem as a hamper, the main change to the C++ code is requiring it to use strings and stringstreams (as in the example) rather than file streams. This replacement can be easily acheieved. The only odd consequence of doing things this is way is when running the Web side, an empty string is (at least once) treated as having 1 character in it when using `getline`. This however, is easily gotten through, as demonstrated in the sample code.
+Due to the high risk of exploits from the internet, JavaScript and WebAssembly have severe limitations on what can and cannot be performed. WebAssembly, in fact, can only access files that it is specified as having access to at compile time. Thus, special code and methodology is needed to access the file system of the computer. This is handled already in the application by having JavaScript read the file in from the computer, take the contents of the file as a string and set it to the WebAssembly application, get back the new date from the WebAssembly application as a string, and (using freely available 3rd-party code) write it to the computer as a file placed into downloads. While this may seem as a hamper to what can be done in the C++ code, the main change to the C++ code is requiring it to use strings and stringstreams (as in the example) rather than file streams. This replacement can be easily acheieved. The only odd consequence I have encountered of doing things this is way is when running the Web side, an empty string is (at least once) treated as having 1 character in it when using `getline`. This however, is easily gotten through by changing the necessary check, as demonstrated in the sample code.
 
 The example code provided in src/bindings.cpp and src/converter.cpp provide a template that can be modified for implementation. The main setup for any function that you add to the class that you wish to expose is:
 `.function("exposedName", &refToFunc)`
 
-Note that some special work has to be done for more advanced structures, such as vectors. For those, see https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html, which also has information on concepts such as pointers and overloading and how th bindings must be changed for these.
+Note that some special work has to be done for more advanced structures, such as vectors. For those, see [this documentation](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html), which also has information on concepts such as pointers and overloading and how th bindings must be changed for these.
 
 There is documentation in the files for all functions used. The ones that are currently exposed are all currently used by the WebApplication, and have the following uses:
 * `Converter::Converter()`: The constructor. It is needed to construct the Converter object.
