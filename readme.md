@@ -1,6 +1,6 @@
 # C++ and WebAssembly Demonstration Website
 
-Please click [here](https://gatorsethbarber.github.io/GatorSethBarber.github.io-ExampleWasmFileConverter/docs/converter) to go to the actual application.
+Please click [here](https://uf-cise-surflab.github.io/SurfLab.github.io-ExampleWasmFileConverter/docs/converter) to go to the actual application.
 
 ## Use of Web Application
 
