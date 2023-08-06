@@ -1,7 +1,7 @@
 # C++ and WebAssembly Demonstration Website
 
-Please click [here](https://UF-CISE-Surflab.github.io/UF-CISE-Surflab.github.io-ExampleWasmFileConverter/docs/converter) to go to the actual application.
-
+Please click [here](https://uf-cise-surflab.github.io/uf-cise-surflab.github.io-ExampleWasmFileConverter/docs/converter) to go to the actual application.
+ 
 ## Use of Web Application
 
 The user browses and selects a file with type type `.obj`. After pressing the convert button, a shift of all the characters by one position is written to the file `output.obj` in Downloads. A number in parentheses may be added by the user's OS to distinguish between various versions.
