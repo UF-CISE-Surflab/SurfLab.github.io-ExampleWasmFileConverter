@@ -1,6 +1,6 @@
 # C++ and WebAssembly Demonstration Website
 
-Please click [here](https://uf-cise-surflab.github.io/uf-cise-surflab.github.io-ExampleWasmFileConverter/docs/converter) to go to the actual application.
+Please click [here](https://UF-CISE-Surflab.github.io/UF-CISE-Surflab.github.io-ExampleWasmFileConverter/docs/converter) to go to the actual application.
 
 ## Use of Web Application
 
