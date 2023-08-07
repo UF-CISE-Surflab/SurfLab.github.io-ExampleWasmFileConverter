@@ -2,6 +2,8 @@
 #include <sstream>
 #include <iostream>
 
+#include <OpenMesh/Core/IO/MeshIO.hh>
+
 using namespace std;
 
 // Reviewed: https://cplusplus.com/reference/sstream/istringstream/istringstream/
@@ -85,10 +87,10 @@ string Converter::stringConvert(string textInput) {
 
      // Used to hold line and identifying code
     string line, code;
-    
+
     while (input.good()) {
         getline(input, line);
-        
+
         // If a blank line, write with no adjustments
         // NOTE: Size 1 used to make it work with JavaScript and Wasm
         if (line.size() < 2) {
