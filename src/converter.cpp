@@ -1,8 +1,8 @@
 #include "converter.h"
 #include <sstream>
 #include <iostream>
+#include "/home/kylelo/research/web/semi_structured_spline/Source/src/mesh_to_igs.hpp"
 
-#include <OpenMesh/Core/IO/MeshIO.hh>
 
 using namespace std;
 
@@ -78,6 +78,9 @@ string Converter::stringConvert(string textInput) {
     malformed_line = false;
     error_before_eof = false;
     lineWithError = "";
+
+    cout << mesh_to_igs("cube.obj") << endl;
+    
 
     // Set up input and output streams
     istringstream input(textInput);
