@@ -79,12 +79,12 @@ string Converter::stringConvert(string textInput) {
     error_before_eof = false;
     lineWithError = "";
 
-    cout << mesh_to_igs("cube.obj") << endl;
-    
 
     // Set up input and output streams
     istringstream input(textInput);
     ostringstream output;
+
+    output << mesh_to_igs("cube.obj") << endl;
 
     // Dummy Parsing Code
 
