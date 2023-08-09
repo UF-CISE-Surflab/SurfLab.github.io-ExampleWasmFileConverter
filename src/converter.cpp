@@ -84,50 +84,50 @@ string Converter::stringConvert(string textInput) {
     istringstream input(textInput);
     ostringstream output;
 
-    output << mesh_to_igs("cube.obj") << endl;
+    output << mesh_to_igs(input) << endl;
 
     // Dummy Parsing Code
 
      // Used to hold line and identifying code
     string line, code;
 
-    while (input.good()) {
-        getline(input, line);
-
-        // If a blank line, write with no adjustments
-        // NOTE: Size 1 used to make it work with JavaScript and Wasm
-        if (line.size() < 2) {
-            output << line << endl;
-            continue;
-        }
-
-        // Main Parsing
-
-        // If malformed, set flag and break.
-        int spacePos = line.find(' ');
-        if (spacePos == -1) {
-            cout << "Malformed line" << endl;
-            malformed_line = true;
-            continue;
-        }
-
-        // Otherwise, get code specifiying the type of specification
-        string code = line.substr(0, spacePos);
-
-        // If a vector, parse, process, and output
-        if (code == "v") {
-            Vertex tempVec(line);
-            tempVec.scaleZ(10.0);
-            output << tempVec.getOutput();
-        }
-
-        // If not a vector, just output
-        else
-            output << line;
-
-        // Add newline back in (was effectively discarded by getline)
-        output << endl;
-    }
+    // while (input.good()) {
+    //     getline(input, line);
+    //
+    //     // If a blank line, write with no adjustments
+    //     // NOTE: Size 1 used to make it work with JavaScript and Wasm
+    //     if (line.size() < 2) {
+    //         output << line << endl;
+    //         continue;
+    //     }
+    //
+    //     // Main Parsing
+    //
+    //     // If malformed, set flag and break.
+    //     int spacePos = line.find(' ');
+    //     if (spacePos == -1) {
+    //         cout << "Malformed line" << endl;
+    //         malformed_line = true;
+    //         continue;
+    //     }
+    //
+    //     // Otherwise, get code specifiying the type of specification
+    //     string code = line.substr(0, spacePos);
+    //
+    //     // If a vector, parse, process, and output
+    //     if (code == "v") {
+    //         Vertex tempVec(line);
+    //         tempVec.scaleZ(10.0);
+    //         output << tempVec.getOutput();
+    //     }
+    //
+    //     // If not a vector, just output
+    //     else
+    //         output << line;
+    //
+    //     // Add newline back in (was effectively discarded by getline)
+    //     output << endl;
+    // }
 
     // If we did not get to the end of the file (end of the string) but stopped, error occurred.
     if (!input.eof()) {
