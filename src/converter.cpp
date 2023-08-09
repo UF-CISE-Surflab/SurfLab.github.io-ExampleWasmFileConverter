@@ -1,7 +1,7 @@
 #include "converter.h"
 #include <sstream>
 #include <iostream>
-#include "/home/kylelo/research/web/semi_structured_spline/Source/src/mesh_to_igs.hpp"
+#include "mesh_to_igs.hpp"
 
 
 using namespace std;
