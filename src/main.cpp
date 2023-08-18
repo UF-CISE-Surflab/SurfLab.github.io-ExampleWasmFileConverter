@@ -9,7 +9,7 @@ using namespace std;
 string readFile(string filename);
 
 int main() {
-    string contents = readFile("cube.obj");
+    string contents = readFile("/home/kylelo/research/web/semi_structured_spline/testfile/cube.obj");
 
     Converter converter;
     string output = converter.stringConvert(contents);

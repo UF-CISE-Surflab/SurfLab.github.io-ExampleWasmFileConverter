@@ -7,7 +7,7 @@
 // New File System Access API: https://developer.chrome.com/articles/file-system-access/ (not used)
 
 let converter;
-let outputFileType = ".obj";
+let outputFileType = ".igs";
 
 const getLitType = (fileName) => {
     const rightDot = fileName.lastIndexOf(".");
@@ -36,7 +36,7 @@ function doConversion() {
     if (litType !== ".obj") {
         alert(`Unsupported file type: ${litType}`);
     }
-    
+
     const fileReader = new FileReader();
 
     // from readAsText source
@@ -62,7 +62,7 @@ function doConversion() {
         },
         false,
     );
-    
+
     if (file) {
         fileReader.readAsText(file);
     }

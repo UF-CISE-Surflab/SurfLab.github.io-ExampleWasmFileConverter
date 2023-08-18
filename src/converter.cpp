@@ -82,14 +82,14 @@ string Converter::stringConvert(string textInput) {
 
     // Set up input and output streams
     istringstream input(textInput);
-    ostringstream output;
+    // ostringstream output;
 
-    output << mesh_to_igs(input) << endl;
+    // output << mesh_to_igs(input) << endl;
 
     // Dummy Parsing Code
 
      // Used to hold line and identifying code
-    string line, code;
+    // string line, code;
 
     // while (input.good()) {
     //     getline(input, line);
@@ -133,6 +133,8 @@ string Converter::stringConvert(string textInput) {
     if (!input.eof()) {
         error_before_eof = true;
     }
+
+    ostringstream output = mesh_to_igs(input);
 
     return output.str();
 }
