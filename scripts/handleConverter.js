@@ -58,7 +58,7 @@ function doConversion() {
             saveAs(blob, "output" + outputFileType);
 
             // State task is done and report errors
-            alert("Task done.\nError report:\n" + converter.flagReport());
+            alert("IGS file is generated!.\n If you see holes on surface or totally empty, please modify the mesh configuration (Two singularities should not be direct neighbor.).");
         },
         false,
     );
