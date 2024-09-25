@@ -9,14 +9,14 @@
 let converter;
 let outputFileType = ".igs";
 
-const getLitType = (fileName) => {
+const splitFileName = (fileName) => {
     const rightDot = fileName.lastIndexOf(".");
 
     if (rightDot === -1)
-        return ""
+        return [fileName, ""]
 
     else {
-        return fileName.substring(rightDot)
+        return [fileName.substring(0, rightDot), fileName.substring(rightDot)];
     }
 }
 
@@ -106,9 +106,9 @@ function doConversion() {
     }
 
     // Enforce the literal type to be .obj
-    const litType = getLitType(file.name);
-    if (litType !== ".obj") {
-        alert(`Unsupported file type: ${litType}`);
+    const splitName = splitFileName(file.name);
+    if (splitName[1] !== ".obj") {
+        alert(`Unsupported file type: ${splitName[1]}`);
     }
 
     const fileReader = new FileReader();
@@ -130,7 +130,7 @@ function doConversion() {
             let  blob = new Blob([reviseIGES(newString)], {type: "text/plain;charset=utf-8",});
 
             // Create and save the file using the FileWriter library
-            saveAs(blob, "output" + outputFileType);
+            saveAs(blob, splitName[0] + outputFileType);
 
             // State task is done and report errors
             alert("IGS file is generated!.\n If you see holes on surface or totally empty, please modify the mesh configuration (Two singularities should not be direct neighbor.).");
