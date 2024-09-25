@@ -20,6 +20,80 @@ const getLitType = (fileName) => {
     }
 }
 
+const reviseIGES = (fileStr) => {
+    let s_data = [];
+    let g_data = [];
+    let d_data = [];
+    let p_data = [];
+    let t_data = [];
+    let start_locs = [];
+    let lineCtr = 0;
+    let fileLines = fileStr.split('\n');
+    const numFileLines = fileLines.length;
+    while (lineCtr < numFileLines) {
+        line = fileLines[lineCtr].trimEnd()
+        if (line === undefined || line === null)
+            break;
+        if (line.length < 9)
+            break;
+
+        line_type = line[72]
+        if (line_type === 'S') {
+            s_data.push(line);
+            lineCtr += 1;
+        }
+        else if (line_type === 'G') {
+            g_data.push(line);
+            lineCtr += 1;
+        }
+        else if (line_type === 'D') {
+            d_data.push(line + '\n' + fileLines[lineCtr + 1].trimEnd())
+            lineCtr += 2;
+        }
+        else if (line_type === 'P') {
+            let tmp = line;
+            start_locs.push(Number(line.substring(73)));
+            old_num = line.substring(64, 73)      // NOTE: This assumes that numbers use consistent format
+            lineCtr += 1;
+            while (true) {
+                if (fileLines[lineCtr].substring(64,73) === old_num) {
+                    tmp += '\n' + fileLines[lineCtr].trimEnd();
+                    lineCtr += 1
+                }
+                else
+                    break;
+            }
+            p_data.push(tmp);
+        }
+        else {
+            t_data.push(line);
+            lineCtr += 1;
+            console.log("Got T")
+        }
+
+    }
+    
+    for (let idx = 0; idx < start_locs.length; idx += 1) {
+        let asStr = start_locs[idx].toString().padStart(8);
+        const curr = d_data[idx];
+        d_data[idx] = d_data[idx].substring(0, 8) + asStr + d_data[idx].substring(16,);
+    }
+
+    out = ''
+    if (s_data.length === 0)
+        out += 'copyright(c)Jorg Peters [jorg.peters@gmail.com]                         S      1\n';
+    else
+        out += ''.join(s_data);
+    if (g_data.length === 0)
+        out += "                                                                        G      1\n";
+    else
+        out += ''.join(g_data);
+    out += d_data.join('\n') + '\n';
+    out += p_data.join('\n') + '\n';
+    out += t_data.join('\n') + '\n';
+    return out
+}
+
 function doConversion() {
     fileInInput = document.getElementById("in-file");
     filesIn = fileInInput.files;
@@ -52,7 +126,8 @@ function doConversion() {
 
             // Copied from https://github.com/GatorSethBarber/HotelogyFinal/blob/main/4500/scripts/dataHandler.js
             // Create blob object with file content
-            let  blob = new Blob([newString], {type: "text/plain;charset=utf-8",});
+
+            let  blob = new Blob([reviseIGES(newString)], {type: "text/plain;charset=utf-8",});
 
             // Create and save the file using the FileWriter library
             saveAs(blob, "output" + outputFileType);
