@@ -85,7 +85,7 @@ const reviseIGES = (fileStr) => {
     else
         out += ''.join(s_data);
     if (g_data.length === 0)
-        out += "                                                                        G      1\n";
+        out += ",,;                                                                     G      1\n";
     else
         out += ''.join(g_data);
     out += d_data.join('\n') + '\n';
